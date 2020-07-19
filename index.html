@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Task 3</title>
 </head>
 <body>
 </body>
@@ -13,9 +13,28 @@
             let xhr = new XMLHttpRequest();
             xhr.open('get', url, true);
             xhr.onload = () => {
-
-            }
+                try {
+                    if (xhr.status === 200) {
+                        resolve(xhr.response);
+                    }
+                    else {
+                        reject(new Error(xhr.statusText));
+                    }
+                } catch (e) {
+                    reject(e)
+                }
+            };
+            xhr.send();
         })
     }
+
+    const firstUrl = 'https://cors-anywhere.herokuapp.com/https://www.google.com/', secondUrl = 'https://cors-anywhere.herokuapp.com/https://yandex.by/';
+    getResponse(firstUrl)
+    .then(response => {
+        return getResponse(secondUrl)
+    })
+    .then(response => {
+        console.log('оба ответа получены')
+    })
 </script>
 </html>
