@@ -8,8 +8,14 @@
 </body>
 
 <script>
-    function getReasponse() {
+    function getResponse(url) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('get', url, true);
+            xhr.onload = () => {
 
+            }
+        })
     }
 </script>
 </html>
